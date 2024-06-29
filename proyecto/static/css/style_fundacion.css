@@ -1,0 +1,31 @@
+.banner {
+    background-color: #333;
+    background-size: cover;
+    background-position: center;
+    color: #fff;
+    padding: 100px 0;
+    text-align: center;
+}
+
+.banner img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+}
+
+.content {
+    padding: 50px 0;
+}
+
+footer {
+    background-color: #333;
+    color: #fff;
+    padding: 20px 0;
+}
+
+.partner-info {
+    padding: 30px;
+    background-color: #f8f9fa; /* Cambiar color de fondo */
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Agregar sombra */
+}

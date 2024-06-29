@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fundación Ningún DJ sin Comer</title>
+    {% load static %}
+    
+    <link rel="stylesheet" href="{% static 'bootstrap-5.3.3-dist/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style_fundacion.css' %}">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand" href="#">Ningún DJ sin Comer</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Inicio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Nosotros</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Donar</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Contacto</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Banner -->
+<div class="container-fluid banner">
+  <img src="{% static 'img/Donativo Fundacion.png' %}" alt="" class="img-fluid">
+  <h1 class="display-4">Fundación Ningún DJ sin Comer</h1>
+  <p class="lead">Ayudando a las familias menos favorecidas a comer algo</p>
+</div>
+
+<!-- Contenido -->
+<div class="container content">
+  <div class="row">
+      <div class="col-md-6">
+          <h2>Nuestra Misión</h2>
+          <p>Somos una fundación comprometida con la alimentación de las familias más necesitadas. Creemos que nadie debería pasar hambre, y trabajamos cada día para hacer de este mundo un lugar mejor.</p>
+      </div>
+      <div class="col-md-6">
+          <h2>Cómo Puedes Ayudar</h2>
+          <p>Tú también puedes formar parte de esta causa. Puedes realizar donaciones monetarias, donar alimentos no perecederos o colaborar como voluntario en nuestros programas de distribución de alimentos.</p>
+      </div>
+  </div>
+  <div class="row">
+      <div class="col-md-12">
+          <div class="partner-info text-center">
+              <h2>Asociado: ANMI</h2>
+              <p>ANMI es nuestro asociado y vende productos para animales. Cada compra ayuda a financiar nuestros programas para ayudar a las familias necesitadas.</p>
+              <a href="{% url 'index' %}" class="btn btn-primary">Conoce más sobre ANMI</a>
+          </div>
+      </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="text-light text-center py-4">
+  <div class="container">
+      <p>Fundación Ningún DJ sin Comer &copy; 2024</p>
+  </div>
+</footer>
+
+<!-- Bootstrap JS y Scripts personalizados -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+</body>
+</html>

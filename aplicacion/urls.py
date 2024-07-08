@@ -62,13 +62,8 @@ urlpatterns = [
     path('admin_eliminar_ofertas/<int:producto_id>/', views.eliminar_producto_ofertas, name='eliminar_producto_ofertas'),
     path('admin_modificar_ofertas/<int:producto_id>/', views.modificar_producto_ofertas, name='modificar_producto_ofertas'),
 
-    
+ ########### URLS DE CONFIRMACION DE COMPRAS    
 
-
-
-
-
-
-
-
+   path('confirmacion_compra/', views.comprar_carrito, name='comprar_carrito'),
+   path('confirmacion/<int:pedido_id>/', views.confirmacion_compra, name='confirmacion_compra'),
 ]

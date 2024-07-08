@@ -5,6 +5,8 @@ from .models import Producto_collares
 from .models import Producto_identificadores
 from .models import Producto_ofertas
 from .models import Canasta
+from .models import Pedido
+from .models import PedidoItem
 from .forms import ProductoForms
 from .forms import Producto_bandanasForms
 from .forms import Producto_collaresForms
@@ -325,3 +327,66 @@ def modificar_producto_ofertas(request, producto_id):
     else:
         form = Producto_ofertasForms(instance=producto)
     return render(request, 'paginas/admin_modificar_ofertas.html', {'form': form, 'producto': producto})
+
+
+
+#vista para proceder con la compra
+def comprar_carrito(request):
+    carrito_items = Canasta.objects.all()
+
+    if request.method == 'POST' and carrito_items.exists():
+        # Crear un nuevo pedido
+        nuevo_pedido = Pedido.objects.create(total=0)
+        total = 0
+
+        # Agregar los productos del carrito al pedido
+        for item in carrito_items:
+            precio_unitario = None
+            if item.producto:
+                precio_unitario = float(item.producto.precio)
+            elif item.bandanas:
+                precio_unitario = float(item.bandanas.precio)
+            elif item.collares:
+                precio_unitario = float(item.collares.precio)
+            elif item.identificadores:
+                precio_unitario = float(item.identificadores.precio)
+            elif item.ofertas:
+                precio_unitario = float(item.ofertas.precio)
+
+            PedidoItem.objects.create(
+                pedido=nuevo_pedido,
+                producto_index=item.producto,
+                producto_bandanas=item.bandanas,
+                producto_collares=item.collares,
+                producto_identificadores=item.identificadores,
+                producto_ofertas=item.ofertas,
+                cantidad=item.cantidad,
+                precio_unitario=precio_unitario
+            )
+            total += precio_unitario * item.cantidad
+
+        nuevo_pedido.total = total
+        nuevo_pedido.save()
+
+        # Vaciar el carrito
+        carrito_items.delete()
+
+        return redirect('confirmacion_compra', pedido_id=nuevo_pedido.id)
+    
+    return redirect('ver_carrito')
+
+def confirmacion_compra(request, pedido_id):
+    pedido = Pedido.objects.get(id=pedido_id)
+    for item in pedido.items.all():
+        if item.producto_index:
+            item.subtotal = item.cantidad * item.producto_index.precio
+        elif item.producto_bandanas:
+            item.subtotal = item.cantidad * item.producto_bandanas.precio
+        elif item.producto_collares:
+            item.subtotal = item.cantidad * item.producto_collares.precio
+        elif item.producto_identificadores:
+            item.subtotal = item.cantidad * item.producto_identificadores.precio
+        elif item.producto_ofertas:
+            item.subtotal = item.cantidad * item.producto_ofertas.precio
+
+    return render(request, 'paginas/confirmacion_compra.html', {'pedido': pedido})
